@@ -2,11 +2,9 @@
 #include <ctime>
 
 Date::Date() {
-    time_t t = time(0);   // get time now
-    tm* now = localtime(&t);
-    this->day = now->tm_mday;
-    this->month = now->tm_mon + 1;
-    this->year = now->tm_year + 1900;
+    this->day=0;
+    this->month=0;
+    this->year=0;
 }
 
 Date::Date(int day, int month, int year) {

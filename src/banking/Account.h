@@ -39,6 +39,7 @@ public:
     virtual double getMonthlyFee() = 0;
 
     double getBalance() const;
+    string getNumber() const;
 
     const Date getCreationDate() const;
 
