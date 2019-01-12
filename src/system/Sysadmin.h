@@ -1,29 +1,18 @@
-///**
-// * Project Bank
-// * @author Michał Suliborski, Anna Preczynska
-// * @version 1.0
-// */
-//
-//
-//#ifndef _SYSADMIN_H
-//#define _SYSADMIN_H
-//
-//#include "System.h"
-//
-//
-//class Sysadmin {
-//public:
-//
-//void Sysadmin();
-//
-//void ~Sysadmin();
-//
-///**
-// * @param days
-// */
-//void addDays(int days);
-//private:
-//    System system: shared_ptr<System>;
-//};
-//
-//#endif //_SYSADMIN_H
+#ifndef _SYSADMIN_H
+#define _SYSADMIN_H
+
+#include "System.h"
+
+class Sysadmin {
+private:
+    shared_ptr<System> system;
+
+public:
+    Sysadmin();
+    ~Sysadmin();
+    void addDays(int days);
+
+    const shared_ptr<System> &getSystem() const;
+};
+
+#endif //_SYSADMIN_H

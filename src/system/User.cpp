@@ -9,9 +9,14 @@ User::User(string name, double salary, int age, bool isStudent) {
 
 }
 
+User::User() {
+
+}
+
 User::~User() {
 
 }
+
 
 
 //void User::logIn() {

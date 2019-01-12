@@ -4,6 +4,7 @@
 #include <string>
 #include <memory>
 #include <vector>
+#include <map>
 
 
 using namespace std;
@@ -14,7 +15,8 @@ class User {
 
 private:
     string name;
-//    map<int, string> credentials;
+
+    map<int, string> credentials;
     double creditworthiness;
     double salary;
     int age;
@@ -23,10 +25,8 @@ private:
 
 public:
     User(string name, double salary, int age, bool isStudent);
+    User();
     ~User();
-    
-//    void logIn();
-//    void logOut();
 
 //    vector<shared_ptr<Account>> getMyAccounts();
 //    shared_ptr<Account> getCurrentyLoggedInAccount();
