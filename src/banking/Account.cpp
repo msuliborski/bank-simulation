@@ -1,4 +1,5 @@
 #include <string>
+#include <iostream>
 #include "Account.h"
 
 using namespace std;
@@ -8,7 +9,7 @@ Account::Account(string name, string password) {
 }
 
 Account::~Account() {
-
+    delete[];
 }
 
 double Account::getBalance() const {
@@ -20,30 +21,61 @@ string Account::getNumber() const {
 }
 
 const Date Account::getCreationDate() const {
-    return Date();
+    return this->creationDate;
 }
 
 double Account::getInterestRateOnInvestment() const {
-    return 0;
+    return this->interestRateOnInvestment;
 }
 
 double Account::getInterestRateOnLoan() const {
-    return 0;
+    return this->interestRateOnLoan;
 }
 
 const shared_ptr<Bank> &Account::getBank() const {
-    return <#initializer#>;
+    return this->bank;
 }
 
 void Account::changeLogin(int newLogin) {
+    string pass;
+    cout << "Confirm password to change login: ";
+    cin >> pass;
+    if (this->password == pass){
+        cout << "Password correct" << endl;
+        this->login = newLogin;
+    }
+    else cout << "Wrong password" << endl;
 
 }
 
 void Account::changePassword(string newPassword) {
+    string pass;
+    cout << "Confirm old password to change: ";
+    cin >> pass;
+    if (this->password == pass){
+        cout << "Password correct" << endl;
+        this->password = newPassword;
+    }
+    else cout << "Wrong password" << endl;
 
 }
 
 void Account::closeAccount() {
+    string pass;
+    cout << "Confirm password to close account: ";
+    cin >> pass;
+    if (this->password == pass){
+        cout << "Password correct" << endl;
+        Account::~Account();
+    }
+    else cout << "Wrong password" << endl;
+}
 
+void Account::addToBalance(double amount) {
+    this->balance += amount;
+}
+
+void Account::substractFromBalance(double amount) {
+    this->balance -= amount;
 }
 
