@@ -5,10 +5,10 @@
  */
 
 
-#include "Client.h"
+#include "User.h"
 
 /**
- * Client implementation
+ * User implementation
  */
 
 
@@ -18,66 +18,66 @@
  * @param age
  * @param isStudent
  */
-void Client::Client(string name, double salary, int age, bool isStudent) {
+void User::Client(string name, double salary, int age, bool isStudent) {
 
 }
 
-void Client::~Client() {
+void User::~Client() {
 
 }
 
 /**
  * @return void
  */
-void Client::logIn() {
+void User::logIn() {
     return;
 }
 
 /**
  * @return void
  */
-void Client::logOut() {
+void User::logOut() {
     return;
 }
 
 /**
  * @return vector<shared_ptr<Account>>
  */
-vector<shared_ptr<Account>> Client::getMyAccounts() {
+vector<shared_ptr<Account>> User::getMyAccounts() {
     return null;
 }
 
 /**
  * @return void
  */
-void Client::displayAccountStatus() {
+void User::displayAccountStatus() {
     return;
 }
 
 /**
  * @return void
  */
-void Client::displayTransferHistory() {
+void User::displayTransferHistory() {
     return;
 }
 
 /**
  * @return shared_ptr<Account>
  */
-shared_ptr<Account> Client::getCurrentyLoggedInAccount() {
+shared_ptr<Account> User::getCurrentyLoggedInAccount() {
     return null;
 }
 
 /**
  * @return shared_ptr<Bank>
  */
-shared_ptr<Bank> Client::getBank() {
+shared_ptr<Bank> User::getBank() {
     return null;
 }
 
 /**
  * @return bool
  */
-bool Client::isStudent() {
+bool User::isStudent() {
     return false;
 }

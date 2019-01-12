@@ -8,8 +8,8 @@
 #ifndef _SYSTEM_H
 #define _SYSTEM_H
 
-#include "../banking/Bank.h"
-#include "SimulationLogic.h"
+#include "Bank.h"
+#include "User.h"
 
 
 class System {
@@ -26,7 +26,7 @@ private:
     Date currentDate;
     vector<Transfer> pendingTransfers;
     vector<Bank> bank: vector<shared_ptr<Bank>>;
-    SimulationLogic logic: shared_ptr<SimulationLogic>;
+    vector<User> system:shared_ptr<User>;
     
 void payTheSalary();
     

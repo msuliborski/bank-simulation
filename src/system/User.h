@@ -5,13 +5,15 @@
  */
 
 
-#ifndef _CLIENT_H
-#define _CLIENT_H
+#ifndef _USER_H
+#define _USER_H
 
 #include "Bank.h"
+#include "SimulationLogic.h"
+#include "System.h"
 
 
-class Client {
+class User {
 public: 
     
 /**
@@ -49,6 +51,8 @@ private:
     int age;
     bool isStudent;
     Bank bank: shared_ptr<Bank>;
+    SimulationLogic logic: shared_ptr<SimulationLogic>;
+    System system:shared_ptr<System>;
 };
 
-#endif //_CLIENT_H
+#endif //_USER_H

@@ -8,7 +8,7 @@
 #ifndef _USERINTERFACE_H
 #define _USERINTERFACE_H
 
-#include "../other/Date.h"
+#include "Date.h"
 
 
 class UserInterface: public Date {

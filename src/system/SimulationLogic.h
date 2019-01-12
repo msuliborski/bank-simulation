@@ -8,7 +8,7 @@
 #ifndef _SIMULATIONLOGIC_H
 #define _SIMULATIONLOGIC_H
 
-#include "System.h"
+#include "User.h"
 
 
 class SimulationLogic {
@@ -25,7 +25,7 @@ void performOperation();
 UserInterface display();
 private: 
     UserInterface console;
-    System system:shared_ptr<System>;
+    User system:shared_ptr<User>;
 };
 
 #endif //_SIMULATIONLOGIC_H

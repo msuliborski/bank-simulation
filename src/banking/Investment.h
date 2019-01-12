@@ -8,9 +8,9 @@
 #ifndef _INVESTMENT_H
 #define _INVESTMENT_H
 
-#include "../account/Account.h"
-#include "../account/PersonalAccount.h"
-#include "../account/StudentsAccount.h"
+#include "Account.h"
+#include "PersonalAccount.h"
+#include "StudentsAccount.h"
 
 
 class Investment: public Investment, public Account, public PersonalAccount, public StudentsAccount {

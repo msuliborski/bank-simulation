@@ -8,9 +8,9 @@
 #ifndef _BANK_H
 #define _BANK_H
 
-#include "../account/Account.h"
-#include "../system/System.h"
-#include "Client.h"
+#include "Account.h"
+#include "System.h"
+#include "User.h"
 #include "Investment.h"
 #include "Loan.h"
 
@@ -77,7 +77,7 @@ private:
     double euroRate;
     vector<Account> accounts: vector<shared_ptr<Account>>;
     System system: shared_ptr<System>;
-    vector<Client> clients: vector<shared_ptr<Client>>;
+    vector<User> clients: vector<shared_ptr<Client>>;
     vector<Investment> investments: vector<shared_ptr<Investment>>;
     vector<Loan> loans: vector<shared_ptr<Loan>>;
 };
