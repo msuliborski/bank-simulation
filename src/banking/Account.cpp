@@ -12,7 +12,11 @@ Account::~Account() {
 }
 
 double Account::getBalance() const {
-    return 0;
+    return this->balance;
+}
+
+string Account::getNumber() const {
+    return this->number;
 }
 
 const Date Account::getCreationDate() const {

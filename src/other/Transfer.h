@@ -9,7 +9,7 @@ using namespace std;
 class Transfer {
 public: 
     
-Transfer(string title, string recipentNumber, string senderNumber, double amount, string currency, Date date);
+Transfer(string title, string recipientNumber, string senderNumber, double amount, string currency, Date date);
 ~Transfer();
     
 string getTitle();

@@ -2,9 +2,9 @@
 
 using namespace std;
 
-Transfer::Transfer(string title, string recipentNumber, string senderNumber, double amount, string currency, Date date) {
+Transfer::Transfer(string title, string recipientNumber, string senderNumber, double amount, string currency, Date date) {
     this->title = title;
-    this->recipientNumber = recipentNumber;
+    this->recipientNumber = recipientNumber;
     this->senderNumber = senderNumber;
     this->amount = amount;
     this->currency = currency;
