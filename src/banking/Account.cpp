@@ -39,7 +39,7 @@ void Account::changeLogin(int newLogin) {
     string pass;
     cout << "Confirm password to change login: ";
     cin >> pass;
-    if (this->password == pass){
+    if (this->password.compare(pass)){
         cout << "Password correct" << endl;
         this->login = newLogin;
     }
