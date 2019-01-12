@@ -7,16 +7,14 @@
 using namespace std;
 
 class ForeignCurrencyAccount: public Account {
-public: 
-    
-    ForeignCurrencyAccount();
-
+private:
+    string currency;
+public:
+    ForeignCurrencyAccount(string name, string password);
     ~ForeignCurrencyAccount();
     
-    string getCurrency();
+//    string getCurrency();
 
-private: 
-    string currency;
 };
 
 #endif //_FOREIGNCURRENCYACCOUNT_H
