@@ -12,7 +12,7 @@ public:
     ~Sysadmin();
     void addDays(int days);
 
-    const shared_ptr<System> &getSystem() const;
+    shared_ptr<System> getSystem();
 };
 
 #endif //_SYSADMIN_H

@@ -38,6 +38,9 @@ Sysadmin::Sysadmin() {
     cout << "dupa" << endl; cout.flush();
     this->system->setCurrentDate(d, m, y);
 
+    cout << system->getCurrentDate().day << endl; cout.flush();
+    cout << system->getCurrentDate().month << endl; cout.flush();
+    cout << system->getCurrentDate().year << endl; cout.flush();
     inputFile.close();
 }
 
@@ -59,6 +62,6 @@ void Sysadmin::addDays(int days) {
         this->system->addDay();
 }
 
-const shared_ptr<System> &Sysadmin::getSystem() const {
+shared_ptr<System> Sysadmin::getSystem() {
     return system;
 }
