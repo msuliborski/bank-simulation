@@ -52,6 +52,8 @@ public:
     void changeLogin(int newLogin);
     void changePassword(string newPassword);
     void closeAccount();
+    void addToBalance(double amount);
+    void substractFromBalance(double amount);
 
 };
 
