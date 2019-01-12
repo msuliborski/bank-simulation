@@ -24,7 +24,8 @@ public:
     void addDay();
     shared_ptr<User> getUser(string name);
 
-//    Date getCurrentDate();
+    Date getCurrentDate();
+    void setCurrentDate(int day, int month, int year);
 //
 //    void payTheSalary();
 //    void payInterest();

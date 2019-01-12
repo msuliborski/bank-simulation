@@ -51,8 +51,8 @@ User::~User() {
 //shared_ptr<Bank> User::getBank() {
 //    return null;
 //}
-
-
-bool User::isStudent() {
-    return false;
-}
+//
+//
+//bool User::isStudent() {
+//    return false;
+//}
