@@ -1,25 +1,22 @@
-/**
- * Project Bank
- * @author Michał Suliborski, Anna Preczynska
- * @version 1.0
- */
-
-
 #ifndef _JUNIORACCOUNT_H
 #define _JUNIORACCOUNT_H
 
 #include "Account.h"
 
-
 class JuniorAccount: public Account {
-public: 
+private:
     double transferLimit;
-    
-void JuniorAccount();
-    
-void ~JuniorAccount();
-    
-double getTransferLimit();
+
+public:
+    JuniorAccount(string name, string password);
+    ~JuniorAccount();
+
+    virtual void makeTransfer(string recipient, string title, double amount);
+    virtual string getCurrency();
+    virtual double getTransferLimit();
+    virtual double getTransferFee();
+    virtual double getMonthlyFee();
 };
+
 
 #endif //_JUNIORACCOUNT_H

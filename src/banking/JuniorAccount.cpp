@@ -1,28 +1,15 @@
-/**
- * Project Bank
- * @author Michał Suliborski, Anna Preczynska
- * @version 1.0
- */
-
 
 #include "JuniorAccount.h"
 
-/**
- * JuniorAccount implementation
- */
 
-
-void JuniorAccount::JuniorAccount() {
+JuniorAccount::JuniorAccount(string name, string password) : Account(name, password) {
 
 }
 
-void JuniorAccount::~JuniorAccount() {
+JuniorAccount::~JuniorAccount() {
 
 }
 
-/**
- * @return double
- */
-double JuniorAccount::getTransferLimit() {
-    return 0.0;
-}
+//double JuniorAccount::getTransferLimit() {
+//    return 0.0;
+//}

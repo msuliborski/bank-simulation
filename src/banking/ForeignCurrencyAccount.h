@@ -1,4 +1,3 @@
-
 #ifndef _FOREIGNCURRENCYACCOUNT_H
 #define _FOREIGNCURRENCYACCOUNT_H
 
@@ -12,8 +11,12 @@ private:
 public:
     ForeignCurrencyAccount(string name, string password);
     ~ForeignCurrencyAccount();
-    
-//    string getCurrency();
+
+    virtual void makeTransfer(string recipient, string title, double amount);
+    virtual string getCurrency();
+    virtual double getTransferLimit();
+    virtual double getTransferFee();
+    virtual double getMonthlyFee();
 
 };
 

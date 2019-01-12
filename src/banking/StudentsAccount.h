@@ -1,10 +1,3 @@
-/**
- * Project Bank
- * @author Michał Suliborski, Anna Preczynska
- * @version 1.0
- */
-
-
 #ifndef _STUDENTSACCOUNT_H
 #define _STUDENTSACCOUNT_H
 
@@ -12,18 +5,16 @@
 
 
 class StudentsAccount: public Account {
-public: 
-    
-void StudentsAccount();
-    
-void ~StudentsAccount();
-    
-/**
- * @param recipient
- * @param title
- * @param amount
- */
-void makeTransfer(string recipient, string title, double amount);
+private:
+public:
+    StudentsAccount(string name, string password);
+    ~StudentsAccount();
+
+    virtual void makeTransfer(string recipient, string title, double amount);
+    virtual string getCurrency();
+    virtual double getTransferLimit();
+    virtual double getTransferFee();
+    virtual double getMonthlyFee();
 };
 
 #endif //_STUDENTSACCOUNT_H
