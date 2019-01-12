@@ -2,20 +2,16 @@
 #define _DATE_H
 
 class Date {
-public: 
-    
-Date();
-Date(int day, int month, int year);
-~Date();
-    
-int getDay();
-int getMonth();
-int getYear();
 
-private: 
+public:
     int day;
     int month;
     int year;
+
+    Date();
+    Date(int day, int month, int year);
+    ~Date();
+
 };
 
 #endif //_DATE_H

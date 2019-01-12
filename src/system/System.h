@@ -12,7 +12,7 @@ using namespace std;
 class System {
 
 private:
-    Date currentDate;
+    shared_ptr<Date> currentDate;
 //    vector<Transfer> pendingTransfers;
 //    vector<shared_ptr<Bank>> banks;
     vector<shared_ptr<User>> users;

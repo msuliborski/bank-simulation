@@ -16,16 +16,3 @@ Date::Date(int day, int month, int year) {
 Date::~Date() {
 
 }
-
-int Date::getDay() {
-
-    return this->day;
-}
-
-int Date::getMonth() {
-    return this->month;
-}
-
-int Date::getYear() {
-    return this->year;
-}

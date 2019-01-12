@@ -1,16 +1,17 @@
 #include <fstream>
+#include <iostream>
 #include "Sysadmin.h"
 
 
 Sysadmin::Sysadmin() {
+    shared_ptr<System> system(new System());
+    this->system = system;
+
     ifstream inputFile;
-
     inputFile.open("system.txt", ios::out);
-
     string tempLine;
 
     getline(inputFile, tempLine);
-
     int i = 0;
     string day = "", month = "", year = "";
     int d = 0, m = 0, y = 0;
@@ -34,6 +35,7 @@ Sysadmin::Sysadmin() {
     if (month != "") m = atoi(month.c_str());
     if (year != "") y = atoi(year.c_str());
 
+    cout << "dupa" << endl; cout.flush();
     this->system->setCurrentDate(d, m, y);
 
     inputFile.close();
@@ -41,20 +43,20 @@ Sysadmin::Sysadmin() {
 
 
 
-
 Sysadmin::~Sysadmin() {
 
     ofstream outputFile("system.txt", ios::trunc);
 
-    outputFile  << this->system->getCurrentDate().getDay() << ":"
-                << this->system->getCurrentDate().getMonth() << ":"
-                << this->system->getCurrentDate().getYear() << endl;
+    outputFile  << this->system->getCurrentDate().day << ":"
+                << this->system->getCurrentDate().month << ":"
+                << this->system->getCurrentDate().year << endl;
 
     outputFile.close();
 }
 
 void Sysadmin::addDays(int days) {
-    return;
+    for (int i = 0; i < days; i++)
+        this->system->addDay();
 }
 
 const shared_ptr<System> &Sysadmin::getSystem() const {

@@ -17,16 +17,21 @@ int main (int argc, char *argv[]) {
 
 
     shared_ptr<Sysadmin> sysadmin(new Sysadmin());
-    shared_ptr<System> system = sysadmin->getSystem();
-    shared_ptr<User> currentUser;
+    cout << sysadmin->getSystem()->getCurrentDate().day << endl;
+    sysadmin->addDays(5);
+	cout << "adding" << endl;
+	cout << sysadmin->getSystem()->getCurrentDate().day << endl;
 
-	string name;
-
-	cout << "Hello!" << endl;
-	cout << "Your name: " << endl;
-	cin >> name;
-
-    currentUser = system->getUser(name);
+//    shared_ptr<System> system = sysadmin->getSystem();
+//    shared_ptr<User> currentUser;
+//
+//	string name;
+//
+//	cout << "Hello!" << endl;
+//	cout << "Your name: " << endl;
+//	cin >> name;
+//
+//    currentUser = system->getUser(name);
 
     //getMissingInfo?
     //askWhatToDo?
