@@ -9,7 +9,23 @@ ForeignCurrencyAccount::ForeignCurrencyAccount(string name, string password) : A
 ForeignCurrencyAccount::~ForeignCurrencyAccount() {
 
 }
-//
-//string ForeignCurrencyAccount::getCurrency() {
-//    return "";
-//}
+
+void ForeignCurrencyAccount::makeTransfer(string recipient, string title, double amount) {
+
+}
+
+string ForeignCurrencyAccount::getCurrency() {
+    return std::__cxx11::string();
+}
+
+double ForeignCurrencyAccount::getTransferLimit() {
+    return 0;
+}
+
+double ForeignCurrencyAccount::getTransferFee() {
+    return 0;
+}
+
+double ForeignCurrencyAccount::getMonthlyFee() {
+    return 0;
+}

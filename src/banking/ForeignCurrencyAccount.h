@@ -17,7 +17,6 @@ public:
     virtual double getTransferLimit();
     virtual double getTransferFee();
     virtual double getMonthlyFee();
-
 };
 
 #endif //_FOREIGNCURRENCYACCOUNT_H

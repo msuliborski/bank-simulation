@@ -9,6 +9,22 @@ StudentsAccount::~StudentsAccount() {
 
 }
 
-//void StudentsAccount::makeTransfer(string recipient, string title, double amount) {
-//    return;
-//}
+void StudentsAccount::makeTransfer(string recipient, string title, double amount) {
+
+}
+
+string StudentsAccount::getCurrency() {
+    return std::__cxx11::string();
+}
+
+double StudentsAccount::getTransferLimit() {
+    return 0;
+}
+
+double StudentsAccount::getTransferFee() {
+    return 0;
+}
+
+double StudentsAccount::getMonthlyFee() {
+    return 0;
+}
