@@ -1,27 +1,10 @@
-/**
- * Project Bank
- * @author Michał Suliborski, Anna Preczynska
- * @version 1.0
- */
-
-
 #include "Date.h"
 
-/**
- * Date implementation
- */
-
-
-/**
- * @param day
- * @param month
- * @param year
- */
-void Date::Date(int day, int month, int year) {
+Date::Date(int day, int month, int year) {
 
 }
 
-void Date::~Date() {
+Date::~Date() {
 
 }
 
