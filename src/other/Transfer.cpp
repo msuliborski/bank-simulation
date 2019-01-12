@@ -3,7 +3,12 @@
 using namespace std;
 
 Transfer::Transfer(string title, string recipentNumber, string senderNumber, double amount, string currency, Date date) {
-
+    this->title = title;
+    this->recipientNumber = recipentNumber;
+    this->senderNumber = senderNumber;
+    this->amount = amount;
+    this->currency = currency;
+    this->date = date;
 }
 
 Transfer::~Transfer() {
@@ -11,25 +16,25 @@ Transfer::~Transfer() {
 }
 
 string Transfer::getTitle() {
-    return "";
+    return this->title;
 }
 
 string Transfer::getRecipientNumber() {
-    return "";
+    return this->recipientNumber;
 }
 
 string Transfer::getSenderNumber() {
-    return "";
+    return this->senderNumber;
 }
 
 double Transfer::getAmount() {
-    return 0.0;
+    return this->amount;
 }
 
 string Transfer::getCurrency() {
-    return "";
+    return this->currency;
 }
 
 Date Transfer::getDate() {
-    return null;
+    return this->date;
 }

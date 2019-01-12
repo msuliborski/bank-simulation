@@ -10,20 +10,15 @@ class Transfer {
 public: 
     
 Transfer(string title, string recipentNumber, string senderNumber, double amount, string currency, Date date);
-    
 ~Transfer();
     
 string getTitle();
-    
 string getRecipientNumber();
-    
 string getSenderNumber();
-    
 double getAmount();
-    
 string getCurrency();
-    
 Date getDate();
+
 private: 
     string title;
     string recipientNumber;

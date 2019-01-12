@@ -4,13 +4,15 @@
 Date::Date() {
     time_t t = time(0);   // get time now
     tm* now = localtime(&t);
-    day = now->tm_mday;
-    month = now->tm_mon + 1;
-    year = now->tm_year + 1900;
+    this->day = now->tm_mday;
+    this->month = now->tm_mon + 1;
+    this->year = now->tm_year + 1900;
 }
 
 Date::Date(int day, int month, int year) {
-
+    this->day=day;
+    this->month=month;
+    this->year=year;
 }
 
 Date::~Date() {
@@ -19,13 +21,13 @@ Date::~Date() {
 
 int Date::getDay() {
 
-    return 0;
+    return this->day;
 }
 
 int Date::getMonth() {
-    return 0;
+    return this->month;
 }
 
 int Date::getYear() {
-    return 0;
+    return this->year;
 }
