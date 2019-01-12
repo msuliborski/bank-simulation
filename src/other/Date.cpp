@@ -1,47 +1,33 @@
-/**
- * Project Bank
- * @author Michał Suliborski, Anna Preczynska
- * @version 1.0
- */
-
-
 #include "Date.h"
+#include <ctime>
 
-/**
- * Date implementation
- */
+Date::Date() {
+    time_t t = time(0);   // get time now
+    tm* now = localtime(&t);
+    this->day = now->tm_mday;
+    this->month = now->tm_mon + 1;
+    this->year = now->tm_year + 1900;
+}
 
+Date::Date(int day, int month, int year) {
+    this->day=day;
+    this->month=month;
+    this->year=year;
+}
 
-/**
- * @param day
- * @param month
- * @param year
- */
-void Date::Date(int day, int month, int year) {
+Date::~Date() {
 
 }
 
-void Date::~Date() {
-
-}
-
-/**
- * @return int
- */
 int Date::getDay() {
-    return 0;
+
+    return this->day;
 }
 
-/**
- * @return int
- */
 int Date::getMonth() {
-    return 0;
+    return this->month;
 }
 
-/**
- * @return int
- */
 int Date::getYear() {
-    return 0;
+    return this->year;
 }

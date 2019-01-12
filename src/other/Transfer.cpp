@@ -1,71 +1,40 @@
-/**
- * Project Bank
- * @author Michał Suliborski, Anna Preczynska
- * @version 1.0
- */
-
-
 #include "Transfer.h"
 
-/**
- * Transfer implementation
- */
+using namespace std;
 
+Transfer::Transfer(string title, string recipentNumber, string senderNumber, double amount, string currency, Date date) {
+    this->title = title;
+    this->recipientNumber = recipentNumber;
+    this->senderNumber = senderNumber;
+    this->amount = amount;
+    this->currency = currency;
+    this->date = date;
+}
 
-/**
- * @param title
- * @param recipentNumber
- * @param senderNumber
- * @param amount
- * @param currency
- * @param date
- */
-void Transfer::Transfer(string title, string recipentNumber, string senderNumber, double amount, string currency, Date date) {
+Transfer::~Transfer() {
 
 }
 
-void Transfer::~Transfer() {
-
-}
-
-/**
- * @return string
- */
 string Transfer::getTitle() {
-    return "";
+    return this->title;
 }
 
-/**
- * @return string
- */
 string Transfer::getRecipientNumber() {
-    return "";
+    return this->recipientNumber;
 }
 
-/**
- * @return string
- */
 string Transfer::getSenderNumber() {
-    return "";
+    return this->senderNumber;
 }
 
-/**
- * @return double
- */
 double Transfer::getAmount() {
-    return 0.0;
+    return this->amount;
 }
 
-/**
- * @return string
- */
 string Transfer::getCurrency() {
-    return "";
+    return this->currency;
 }
 
-/**
- * @return Date
- */
 Date Transfer::getDate() {
-    return null;
+    return this->date;
 }
