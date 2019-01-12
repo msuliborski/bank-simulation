@@ -1,4 +1,7 @@
 #include "PersonalAccount.h"
+#include "../other/Transfer.h"
+#include <iostream>
+
 
 
 PersonalAccount::PersonalAccount(string name, string password) : Account(name, password) {

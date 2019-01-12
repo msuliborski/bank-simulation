@@ -6,10 +6,10 @@
 #include "StudentsAccount.h"
 
 
-class Investment: public Investment, public Account, public PersonalAccount, public StudentsAccount {
+class Investment {
 public:
-    void Investment(string name, shared_ptr<Account> account, double amount, int months, int day);
-    void ~Investment();
+    Investment(string name, shared_ptr<Account> account, double amount, int months, int day);
+    ~Investment();
 
     int getSettlementDay();
     int getMonthsLeft();

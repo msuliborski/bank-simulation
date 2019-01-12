@@ -9,7 +9,6 @@ Account::Account(string name, string password) {
 }
 
 Account::~Account() {
-    delete[];
 }
 
 double Account::getBalance() const {
@@ -66,7 +65,7 @@ void Account::closeAccount() {
     cin >> pass;
     if (this->password == pass){
         cout << "Password correct" << endl;
-        Account::~Account();
+        this->~Account();
     }
     else cout << "Wrong password" << endl;
 }
