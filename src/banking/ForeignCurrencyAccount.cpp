@@ -2,7 +2,7 @@
 #include "ForeignCurrencyAccount.h"
 
 
-ForeignCurrencyAccount::ForeignCurrencyAccount(string name, string password) : Account(name, password) {
+ForeignCurrencyAccount::ForeignCurrencyAccount(string name, string password, string currency) : Account(name, password) {
 
 }
 
@@ -11,11 +11,11 @@ ForeignCurrencyAccount::~ForeignCurrencyAccount() {
 }
 
 void ForeignCurrencyAccount::makeTransfer(string recipient, string title, double amount) {
-
+    //trzeba dorobić przelicznik
 }
 
 string ForeignCurrencyAccount::getCurrency() {
-    return std::__cxx11::string();
+    return this->currency;
 }
 
 double ForeignCurrencyAccount::getTransferLimit() {
@@ -23,9 +23,9 @@ double ForeignCurrencyAccount::getTransferLimit() {
 }
 
 double ForeignCurrencyAccount::getTransferFee() {
-    return 0;
+    return this->transferFee;
 }
 
 double ForeignCurrencyAccount::getMonthlyFee() {
-    return 0;
+    return this->monthlyFee;
 }

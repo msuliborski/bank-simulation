@@ -25,9 +25,10 @@ void JuniorAccount::makeTransfer(string recipient, string title, double amount){
     else {
         shared_ptr<Transfer> transfer(
                 new Transfer(title, recipient, this->getNumber(), amount, this->getCurrency(), Date()));
+
         //daj transfera do banku
 
-        addToBalance(amount);
+        substractFromBalance(amount);
     }
 }
 
