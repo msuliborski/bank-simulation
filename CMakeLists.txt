@@ -10,21 +10,25 @@ include_directories(include)
 #file(GLOB SOURCES "src/*.cpp")
 set(SOURCES
         src/main.cpp
-        src/account/Account.cpp
-        src/banking/Bank.cpp
-        src/other/Date.cpp
-        src/account/ForeignCurrencyAccount.cpp
-        src/banking/Investment.cpp
-        src/account/JuniorAccount.cpp
-        src/banking/Loan.cpp
-        src/account/PersonalAccount.cpp
+
         src/system/SimulationLogic.cpp
-        src/account/StudentsAccount.cpp
         src/system/Sysadmin.cpp
         src/system/User.cpp
         src/system/System.cpp
-        src/other/Transfer.cpp
         src/system/UserInterface.cpp
+
+        src/banking/Account.cpp
+        src/banking/ForeignCurrencyAccount.cpp
+        src/banking/JuniorAccount.cpp
+        src/banking/PersonalAccount.cpp
+        src/banking/StudentsAccount.cpp
+
+        src/banking/Bank.cpp
+        src/banking/Investment.cpp
+        src/banking/Loan.cpp
+
+        src/other/Date.cpp
+        src/other/Transfer.cpp
         )
 add_executable(bank-simulation ${SOURCES})
 
