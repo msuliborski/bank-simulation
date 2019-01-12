@@ -1,28 +1,16 @@
-/**
- * Project Bank
- * @author Michał Suliborski, Anna Preczynska
- * @version 1.0
- */
 
-
+#include <string>
 #include "ForeignCurrencyAccount.h"
 
-/**
- * ForeignCurrencyAccount implementation
- */
 
-
-void ForeignCurrencyAccount::ForeignCurrencyAccount() {
+ForeignCurrencyAccount::ForeignCurrencyAccount() : Account() {
 
 }
 
-void ForeignCurrencyAccount::~ForeignCurrencyAccount() {
+ForeignCurrencyAccount::~ForeignCurrencyAccount() {
 
 }
 
-/**
- * @return string
- */
 string ForeignCurrencyAccount::getCurrency() {
     return "";
 }

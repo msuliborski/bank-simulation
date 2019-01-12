@@ -1,24 +1,20 @@
-/**
- * Project Bank
- * @author Michał Suliborski, Anna Preczynska
- * @version 1.0
- */
-
 
 #ifndef _FOREIGNCURRENCYACCOUNT_H
 #define _FOREIGNCURRENCYACCOUNT_H
 
 #include "Account.h"
-
+#include <string>
+using namespace std;
 
 class ForeignCurrencyAccount: public Account {
 public: 
     
-void ForeignCurrencyAccount();
+    ForeignCurrencyAccount();
+
+    ~ForeignCurrencyAccount();
     
-void ~ForeignCurrencyAccount();
-    
-string getCurrency();
+    string getCurrency();
+
 private: 
     string currency;
 };
