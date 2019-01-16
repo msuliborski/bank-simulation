@@ -5,7 +5,7 @@
 
 using namespace std;
 
-User::User(string name, double salary, int age, bool isStudent) {
+User::User(string name, int age, bool isStudent) {
 
 }
 

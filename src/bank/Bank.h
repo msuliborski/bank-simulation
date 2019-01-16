@@ -5,8 +5,8 @@
 #include <vector>
 
 #include "Account.h"
-#include "Investment.h"
-#include "Loan.h"
+#include "../banking/Investment.h"
+#include "../banking/Loan.h"
 
 using namespace std;
 
@@ -14,23 +14,28 @@ class System;
 
 class Bank {
 
+public:
+    Bank(double moneyPLN, double moneyEUR, double moneyUSD);
+    ~Bank();
+
 private:
 //    vector<Transfer> pendingTransfers;
 //    vector<Transfer> transferHistory;
-    double moneyUSD;
     double moneyPLN;
     double moneyEUR;
+    double moneyUSD;
     double dollarRate;
     double euroRate;
 
     shared_ptr<System> system;
     vector<shared_ptr<Account>> accounts;
-    vector<shared_ptr<Investment>> investments;
-    vector<shared_ptr<Loan>> loans;
 
 public:
-    Bank(double money);
-    ~Bank();
+
+    void saveAccountState();
+    void restoreAccountState();
+
+    vector<shared_ptr<Account>>& getAccounts();
 
 //    shared_ptr<Account> createAccount(string name, string password, int age);
 //
