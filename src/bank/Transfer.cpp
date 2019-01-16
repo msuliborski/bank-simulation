@@ -2,13 +2,12 @@
 
 using namespace std;
 
-Transfer::Transfer(string title, string recipientNumber, string senderNumber, double amount, string currency, Date date) {
+Transfer::Transfer(string title, string recipientNumber, string senderNumber, double amount, string currency) {
     this->title = title;
     this->recipientNumber = recipientNumber;
     this->senderNumber = senderNumber;
     this->amount = amount;
     this->currency = currency;
-    this->date = date;
 }
 
 Transfer::~Transfer() {
@@ -33,8 +32,4 @@ double Transfer::getAmount() {
 
 string Transfer::getCurrency() {
     return this->currency;
-}
-
-Date Transfer::getDate() {
-    return this->date;
 }

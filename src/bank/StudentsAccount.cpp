@@ -1,9 +1,9 @@
 #include "StudentsAccount.h"
-#include "../other/Transfer.h"
+#include "Transfer.h"
 #include <iostream>
 
 
-StudentsAccount::StudentsAccount(string name, string password) : Account(name, password) {
+StudentsAccount::StudentsAccount(string name, string number, string login, string password, double balance) : Account(name, number, login, password, balance) {
 
 }
 
@@ -17,11 +17,11 @@ void StudentsAccount::makeTransfer(string recipient, string title, double amount
     }
     else {
         shared_ptr<Transfer> transfer(
-                new Transfer(title, recipient, this->getNumber(), amount, this->getCurrency(), Date()));
+                new Transfer(title, recipient, this->getNumber(), amount, this->getCurrency()));
 
         //daj transfera do banku
 
-        substractFromBalance(amount);
+        withdraw(amount);
     }
 }
 
@@ -33,10 +33,7 @@ double StudentsAccount::getTransferLimit() {
     return 0;
 }
 
-double StudentsAccount::getTransferFee() {
-    return 0;
+string StudentsAccount::getAccountType() {
+    return "student";
 }
 
-double StudentsAccount::getMonthlyFee() {
-    return 0;
-}

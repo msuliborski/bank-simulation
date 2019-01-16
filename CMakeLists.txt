@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.4)
 project(bank-simulation)
 
-set(CMAKE_CXX_FLAGS "-std=c++17")
-set(CMAKE_CXX_FLAGS_DEBUG "-std=c++17 -O0 -g")
+set(CMAKE_CXX_FLAGS "-std=c++14")
+set(CMAKE_CXX_FLAGS_DEBUG "-std=c++14 -O0 -g")
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/out)
 
@@ -13,22 +13,19 @@ set(SOURCES
 
         src/system/SimulationLogic.cpp
         src/system/Sysadmin.cpp
-        src/system/User.cpp
-        src/system/System.cpp
+        src/bank/User.cpp
+        src/bank/System.cpp
         src/system/UserInterface.cpp
 
-        src/banking/Account.cpp
+        src/bank/Account.cpp
         src/banking/ForeignCurrencyAccount.cpp
         src/banking/JuniorAccount.cpp
         src/banking/PersonalAccount.cpp
-        src/banking/StudentsAccount.cpp
+        src/bank/StudentsAccount.cpp
 
-        src/banking/Bank.cpp
-        src/banking/Investment.cpp
-        src/banking/Loan.cpp
+        src/bank/Bank.cpp
 
-        src/other/Date.cpp
-        src/other/Transfer.cpp
+        src/bank/Transfer.cpp
         )
 add_executable(bank-simulation ${SOURCES})
 

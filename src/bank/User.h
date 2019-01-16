@@ -24,7 +24,7 @@ private:
     shared_ptr<System> system;
 
 public:
-    User(string name, double salary, int age, bool isStudent);
+    User(string name, int age, bool isStudent);
     User();
     ~User();
 
