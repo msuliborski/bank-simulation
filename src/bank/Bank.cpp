@@ -1,24 +1,28 @@
 
 #include "Bank.h"
 #include "StudentsAccount.h"
-#include "fstream"
+#include "JuniorAccount.h"
+#include "PersonalAccount.h"
+#include <fstream>
+#include <iostream>
 
 using namespace std;
 
-Bank::Bank(double moneyPLN, double moneyEUR, double moneyUSD) {
-    this->moneyPLN = moneyPLN;
-    this->moneyEUR = moneyEUR;
-    this->moneyUSD = moneyUSD;
+Bank::Bank(double money) {
+    this->money = money;
     restoreAccountState();
-//    shared_ptr<Account> account1(new StudentsAccount("Michal account", "217863", "mike", "mike", 1000));
-//    this->accounts.push_back(account1);
-//
-//    shared_ptr<Account> account2(new StudentsAccount("Anna account", "2178XX", "anna", "anna", 1000));
-//    this->accounts.push_back(account2);
 }
 
-Bank::~Bank() {
-    saveAccountState();
+
+
+shared_ptr<Bank> Bank::instance = nullptr;
+
+shared_ptr<Bank> Bank::GetInstance(double money) {
+    if (instance == nullptr){
+        shared_ptr<Bank> bank(new Bank(money));
+        Bank::instance = bank;
+    }
+    return instance;
 }
 
 void Bank::saveAccountState() {
@@ -27,7 +31,6 @@ void Bank::saveAccountState() {
 
     for (int i = 0; i < this->accounts.size(); i++){
         outputFile  << this->accounts[i]->getAccountType() << ":"
-                    << this->accounts[i]->getName() << ":"
                     << this->accounts[i]->getNumber() << ":"
                     << this->accounts[i]->getLogin() << ":"
                     << this->accounts[i]->getPassword() << ":"
@@ -46,16 +49,10 @@ void Bank::restoreAccountState() {
     while(getline(inputFile, accountLine)) {
 
         int lineCharIterator = 0;
-        string type, name, number, login, password, balance;
+        string type, number, login, password, balance;
 
         while (lineCharIterator < accountLine.length()) {
             type += accountLine[lineCharIterator];
-            lineCharIterator++;
-            if ((char) accountLine[lineCharIterator] == ':') { lineCharIterator++; break; }
-        }
-
-        while (lineCharIterator < accountLine.length()) {
-            name += accountLine[lineCharIterator];
             lineCharIterator++;
             if ((char) accountLine[lineCharIterator] == ':') { lineCharIterator++; break; }
         }
@@ -84,7 +81,11 @@ void Bank::restoreAccountState() {
             if ((char) accountLine[lineCharIterator] == ':') break;
         }
 
-        shared_ptr<Account> account(new StudentsAccount(name, number, login, password, atof(balance.c_str())));
+        shared_ptr<Account> account;
+        if (type == "student") account = shared_ptr<Account>(new StudentsAccount(number, login, password, atof(balance.c_str())));
+        else if (type == "junior") account = shared_ptr<Account>(new JuniorAccount(number, login, password, atof(balance.c_str())));
+        else if (type == "personal") account = shared_ptr<Account>(new PersonalAccount(number, login, password, atof(balance.c_str())));
+
         this->accounts.push_back(account);
 
     }
@@ -92,39 +93,58 @@ void Bank::restoreAccountState() {
 
 }
 
-vector<shared_ptr<Account>> &Bank::getAccounts() {
-    return accounts;
+string Bank::getNewAccountNumber() {
+    return "123456";
 }
 
-//shared_ptr<Account> Bank::createAccount(string name, string password, int age) {
-//    return null;
-//}
+void Bank::addAccount(shared_ptr<Account> account){
+    accounts.push_back(account);
+}
+
+void Bank::addTransfer(shared_ptr<Transfer> transfer) {
+    pendingTransfers.push_back(transfer);
+}
+
+bool Bank::deleteAccount(string accountNumber) {
+    for(int i = 0; i < accounts.size(); i++){
+        if(accounts[i]->getNumber() == accountNumber) {accounts.erase(accounts.begin() + i); return true;}
+    }
+    return false;
+}
+shared_ptr<Account> Bank::checkIfAccountExists(shared_ptr<Account> account) {
+    for(int i = 0; i < accounts.size(); i++){
+        if(accounts[i]->getLogin() == account->getLogin() && accounts[i]->getPassword() == account->getPassword()) {
+            return accounts[i]; }
+        }
+    return nullptr;
+}
+
+void Bank::handleTransfers() {
+    for(int i = 0; i < pendingTransfers.size(); i++) {
+        shared_ptr<Account> recipient = getAccountByNumber(pendingTransfers[i]->getRecipientNumber());
+        shared_ptr<Account> sender = getAccountByNumber(pendingTransfers[i]->getSenderNumber());
+
+        recipient->deposit(pendingTransfers[i]->getAmount()); //get money to recipient
+        sender->setBlockedBalance(sender->getBlockedBalance() - pendingTransfers[i]->getAmount() - sender->getTransferFee()); // remove cost form blocked balance
+
+        transferHistory.push_back(pendingTransfers[i]); //add transfer to transfer history
+    }
+    pendingTransfers.clear();
+}
+
+shared_ptr<Account> Bank::getAccountByNumber(string accountNumber) {
+    for(int i = 0; i < accounts.size(); i++){
+        if(accounts[i]->getNumber() == accountNumber) {
+            return accounts[i];}
+    }
+    return nullptr;
+}
 //
+//void Bank::displayAccounts() {
 //
-//void Bank::createLoan(shared_ptr<Account> account, double money, int months, double creditworthiness) {
-//    return;
-//}
-//
-//void Bank::createInvestment(shared_ptr<Account> account, string name, double amount, int months) {
-//    return;
-//}
-//
-//vector<shared_ptr<Transfer>> Bank::getHistory(shared_ptr<Account> account) {
-//    return null;
-//}
-//
-//vector<Bill> Bank::withdraw(shared_ptr<Account> account) {
-//    return null;
-//}
-//
-//void Bank::deposit(shared_ptr<Account> account, vector<Bill> money) {
-//    return;
-//}
-//
-//void Bank::manageTransfers() {
-//    return;
-//}
-//
-//vectors<string> Bank::getAllAccountNumbers() {
-//    return null;
+//    if (accounts[0] == nullptr) cout << "yea" << endl;
+//    cout << accounts[0]->getNumber() << endl;
+//    for(int i = 0; i < accounts.size(); i++) {
+//        cout << accounts[i]->getNumber() << endl;
+//    }
 //}

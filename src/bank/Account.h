@@ -1,55 +1,57 @@
 #ifndef _ACCOUNT_H
 #define _ACCOUNT_H
 
-
 #include <string>
 #include <memory>
 #include <vector>
+#include "Bank.h"
 
 
 using namespace std;
 
-class Bank;
 
 class Account {
 
 private:
-    string name;
     string number;
 
     string login;
     string password;
 
     double balance;
+    double blockedBalance;
+public:
+    void setBlockedBalance(double blockedBalance);
+
+private:
 
     shared_ptr<Bank> bank;
 
 public:
-    Account(string name, string number, string login, string password, double balance);
+    Account(string login, string password, double balance);
     ~Account();
 
-    virtual void makeTransfer(string recipient, string title, double amount) = 0;
-    virtual string getCurrency() = 0;
+    bool makeTransfer(string recipient, string title, double amount);
+
+    virtual double getTransferFee() = 0;
     virtual double getTransferLimit() = 0;
     virtual string getAccountType() = 0;
 
     double getBalance();
+    double getBlockedBalance();
 
-    string getName();
     string getNumber();
     string getLogin();
     string getPassword();
 
     shared_ptr<Bank> getBank();
 
-    void withdraw(double amount);
-    void deposit(double amount);
+    bool withdraw(double amount);
+    bool deposit(double amount);
 
-    void changeLogin(int newLogin);
-    void changePassword(string newPassword);
-    void changeNumber(int newLogin);
-    void changeName(string newPassword);
-    void closeAccount();
+    bool changeLogin(string newLogin);
+    bool changePassword(string newPassword);
+    bool closeAccount();
 
 };
 

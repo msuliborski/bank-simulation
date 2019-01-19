@@ -3,37 +3,37 @@
 
 #include <memory>
 #include <vector>
+#include "Transfer.h"
 
-#include "Account.h"
+class Account;
 
 using namespace std;
 
-class System;
-
 class Bank {
 
-public:
-    Bank(double moneyPLN, double moneyEUR, double moneyUSD);
-    ~Bank();
-
 private:
-//    vector<Transfer> pendingTransfers;
-//    vector<Transfer> transferHistory;
-    double moneyPLN;
-    double moneyEUR;
-    double moneyUSD;
-    double dollarRate;
-    double euroRate;
+    vector<shared_ptr<Transfer>> pendingTransfers;
+    vector<shared_ptr<Transfer>> transferHistory;
+    Bank(double money);
+    static shared_ptr<Bank> instance;
+    double money;
 
-    shared_ptr<System> system;
     vector<shared_ptr<Account>> accounts;
 
 public:
 
+    static shared_ptr<Bank> GetInstance(double money);
     void saveAccountState();
     void restoreAccountState();
+    string getNewAccountNumber();
+    shared_ptr<Account> getAccountByNumber(string number);
 
-    vector<shared_ptr<Account>>& getAccounts();
+    void addAccount(shared_ptr<Account> account);
+    void addTransfer(shared_ptr<Transfer> transfer);
+    bool deleteAccount(string);
+    shared_ptr<Account> checkIfAccountExists(shared_ptr<Account>);
+    void handleTransfers();
+    void displayAccounts();
 
 //    shared_ptr<Account> createAccount(string name, string password, int age);
 //

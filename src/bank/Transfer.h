@@ -7,22 +7,22 @@ using namespace std;
 
 class Transfer {
 
-public:
-    Transfer(string title, string recipientNumber, string senderNumber, double amount, string currency);
-    ~Transfer();
-
-    string getTitle();
-    string getRecipientNumber();
-    string getSenderNumber();
-    double getAmount();
-    string getCurrency();
-
 private:
     string title;
     string recipientNumber;
     string senderNumber;
     double amount;
-    string currency;
+
+public:
+    Transfer(string title, string recipientNumber, string senderNumber, double amount);
+    ~Transfer();
+
+    string getTitle();
+    string getRecipientNumber();
+    string getSenderNumber();
+    void setSenderNumber(string senderNumber);
+    double getAmount();
+
 };
 
 #endif //_TRANSFER_H

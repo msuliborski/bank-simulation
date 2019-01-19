@@ -12,15 +12,12 @@ set(SOURCES
         src/main.cpp
 
         src/system/SimulationLogic.cpp
-        src/system/Sysadmin.cpp
         src/bank/User.cpp
-        src/bank/System.cpp
         src/system/UserInterface.cpp
 
         src/bank/Account.cpp
-        src/banking/ForeignCurrencyAccount.cpp
-        src/banking/JuniorAccount.cpp
-        src/banking/PersonalAccount.cpp
+        src/bank/JuniorAccount.cpp
+        src/bank/PersonalAccount.cpp
         src/bank/StudentsAccount.cpp
 
         src/bank/Bank.cpp

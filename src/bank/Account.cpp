@@ -1,28 +1,41 @@
 #include <string>
 #include <iostream>
 #include "Account.h"
+#include "Transfer.h"
 
 using namespace std;
 
-Account::Account(string name, string number, string login, string password, double balance) {
-    this->name = name;
-    this->number = number;
+Account::Account(string login, string password, double balance) {
+    this->number = this->bank->getNewAccountNumber();
     this->login = login;
     this->password = password;
     this->balance = balance;
+    this->blockedBalance = 0;
 }
 
 
 Account::~Account() = default;
 
+bool Account::makeTransfer(string recipient, string title, double amount) {
+    if (amount + this->getTransferFee() > this->getBalance() || amount > this->getTransferLimit()){
+        return false;
+    } else {
+        shared_ptr<Transfer> transfer(new Transfer(title, recipient, this->getNumber(), amount));
+
+        bank->addTransfer(transfer);
+
+        this->balance -= amount + this->getTransferFee();
+        this->blockedBalance += amount + this->getTransferFee();
+    }
+    return true;
+}
 
 double Account::getBalance() {
     return this->balance;
 }
 
-
-string Account::getName() {
-    return this->name;
+double Account::getBlockedBalance() {
+    return this->blockedBalance;
 }
 
 
@@ -46,61 +59,38 @@ shared_ptr<Bank> Account::getBank() {
 }
 
 
-void Account::withdraw(double amount) {
-
-}
-
-
-void Account::deposit(double amount) {
-
-}
-
-
-void Account::changeLogin(int newLogin) {
-    string pass;
-    cout << "Confirm password to change login: ";
-    cin >> pass;
-    if (this->password.compare(pass)){
-        cout << "Password correct" << endl;
-        this->login = newLogin;
+bool Account::withdraw(double amount) {
+    if (amount > this->getBalance()){
+        return false;
     } else {
-        cout << "Wrong password" << endl;
+        balance -= amount;
     }
+    return true;
 }
 
 
-void Account::changePassword(string newPassword) {
-    string pass;
-    cout << "Confirm old password to change: ";
-    cin >> pass;
-    if (this->password == pass){
-        cout << "Password correct" << endl;
-        this->password = newPassword;
-    } else {
-        cout << "Wrong password" << endl;
-    }
-
+bool Account::deposit(double amount) {
+    balance += amount;
+    return true;
 }
 
 
-void Account::changeNumber(int newLogin) {
-
+bool Account::changeLogin(string newLogin) {
+    this->login = newLogin;
+    return true;
 }
 
 
-void Account::changeName(string newPassword) {
-
+bool Account::changePassword(string newPassword) {
+    this->password = newPassword;
+    return true;
 }
 
 
-void Account::closeAccount() {
-    string pass;
-    cout << "Confirm password to close account: ";
-    cin >> pass;
-    if (this->password == pass){
-        cout << "Password correct" << endl;
-        this->~Account();
-    } else {
-        cout << "Wrong password" << endl;
-    }
+bool Account::closeAccount() {
+    return bank->deleteAccount(this->number);
+}
+
+void Account::setBlockedBalance(double blockedBalance) {
+    this->blockedBalance = blockedBalance;
 }
