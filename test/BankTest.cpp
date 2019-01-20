@@ -81,10 +81,12 @@ BOOST_AUTO_TEST_CASE(test1Test){
 
 BOOST_AUTO_TEST_CASE(test2Test){
 
-//    shared_ptr<Bank> bank(Bank::GetInstance(1000000));
-//    bank->addAccount(shared_ptr<Account>(new PersonalAccount(9999, "a", "a", 500)));
-//    bank->addAccount(shared_ptr<Account>(new PersonalAccount(9999, "b", "b", 5200)));
+    shared_ptr<Bank> bank(Bank::GetInstance(1000000));
+    bank->addAccount(shared_ptr<Account>(new PersonalAccount(9999, "a", "a", 500)));
+    bank->addAccount(shared_ptr<Account>(new PersonalAccount(9999, "b", "b", 5200)));
 
+    int aNum = bank->getAccountByLogin("a")->getNumber();
+    int bNum = bank->getAccountByLogin("b")->getNumber();
 
     //personalAccount->makeTransfer(8888, "title", 15);
     //bank->handleTransfers();

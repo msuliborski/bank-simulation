@@ -26,6 +26,7 @@ public:
     void restoreAccountState();
     int getNewAccountNumber();
     shared_ptr<Account> getAccountByNumber(int number);
+    shared_ptr<Account> getAccountByLogin(string login);
     void addAccount(shared_ptr<Account> account);
     void addTransfer(shared_ptr<Transfer> transfer);
     bool deleteAccount(int);
@@ -33,21 +34,6 @@ public:
     bool checkIfLoginAvailable(string login);
     void handleTransfers();
     void displayAccounts();
-
-//    shared_ptr<Account> createAccount(string name, string password, int age);
-//
-//    void createLoan(shared_ptr<Account> account, double money, int months, double creditworthiness);
-//
-//    void createInvestment(shared_ptr<Account> account, string name, double amount, int months);
-//
-//    vector<shared_ptr<Transfer>> getHistory(shared_ptr<Account> account);
-//
-//
-//    void deposit(shared_ptr<Account> account, vector<Bill> money);
-//
-//    void manageTransfers();
-//
-//    vectors<string> getAllAccountNumbers();
 };
 
 #endif //_BANK_H

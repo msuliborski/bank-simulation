@@ -151,6 +151,14 @@ shared_ptr<Account> Bank::getAccountByNumber(int accountNumber) {
     return nullptr;
 }
 
+shared_ptr<Account> Bank::getAccountByLogin(string login) {
+    for(int i = 0; i < accounts.size(); i++){
+        if(accounts[i]->getLogin() == login) {
+            return accounts[i];}
+    }
+    return nullptr;
+}
+
 void Bank::displayAccounts() {
     cout  << "" << endl;
     for(int i = 0; i < accounts.size(); i++) {
