@@ -60,13 +60,15 @@ BOOST_AUTO_TEST_CASE(test1Test){
 
 
 	//personalAccount->makeTransfer(8888, "title", 15);
-	//BOOST_CHECK_EQUAL(account->getBalance(), 390);
+	//bank->handleTransfers();
+	//BOOST_CHECK_EQUAL(personalAccount->getBalance(), 390);
 //getBlockedBalance
 
 	BOOST_CHECK_LE(bank->getNewAccountNumber(), 9999);
 	BOOST_CHECK_GE(bank->getNewAccountNumber(), 1000);
 
 	bank->addAccount(personalAccount);
+	//bank->addAccount(juniorAccount);
 
 	BOOST_CHECK_EQUAL(bank->checkIfLoginAvailable("login"), true);
 	BOOST_CHECK_EQUAL(bank->checkIfLoginAvailable("newLogin"), false);
