@@ -13,6 +13,7 @@ void SimulationLogic::simulate() {
     ui->setBank(bank);
 
     shared_ptr<Account> currentAccount = nullptr;
+    shared_ptr<Account> trash = nullptr;
     int logOrSign = -1;
     while (true) {
         if (logOrSign == -1) logOrSign = ui->askUserLogOrSign();
@@ -21,8 +22,8 @@ void SimulationLogic::simulate() {
             if (currentAccount == nullptr) continue;
             int accountAction = -1;
             while (true) {
-                bank->displayAccounts();
                 ui->displayAccountDetails(currentAccount);
+                bank->displayAccounts();
                 accountAction = ui->askUserAccountAction();
                 if (accountAction == 1) {//transfer
                     makeTransfer(currentAccount);
@@ -36,12 +37,16 @@ void SimulationLogic::simulate() {
                     changePassword(currentAccount);
                 } else if (accountAction == 6) {//Close account
                     closeAccount(currentAccount);
+                    trash = currentAccount;
+                    currentAccount = nullptr;
+                    logOrSign = -1;
+                    break;
                 } else if (accountAction == 0) { //go back
+                    trash = currentAccount;
                     currentAccount = nullptr;
                     logOrSign = -1;
                     break;
                 }
-                bank->handleTransfers();
             }
         }
         else if (logOrSign == 2) { //create an account
@@ -53,7 +58,7 @@ void SimulationLogic::simulate() {
             bank->saveAccountState();
             break;
         }
-
+        bank->handleTransfers();
     }
 }
 

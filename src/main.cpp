@@ -4,7 +4,6 @@
 #include <cmath>
 #include <cstdlib>
 
-#include "bank/User.h"
 #include "bank/Bank.h"
 #include "bank/StudentsAccount.h"
 #include "system/SimulationLogic.h"

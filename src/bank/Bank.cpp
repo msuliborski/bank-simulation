@@ -154,7 +154,7 @@ shared_ptr<Account> Bank::getAccountByNumber(int accountNumber) {
 }
 
 void Bank::displayAccounts() {
-
+    cout  << "" << endl;
     for(int i = 0; i < accounts.size(); i++) {
         cout  << this->accounts[i]->getAccountType() << ":"
                     << this->accounts[i]->getNumber() << ":"
@@ -162,4 +162,5 @@ void Bank::displayAccounts() {
                     << this->accounts[i]->getPassword() << ":"
                     << this->accounts[i]->getBalance() << endl;
     }
+    cout  << "" << endl;
 }

@@ -4,6 +4,7 @@
 #include "../bank/JuniorAccount.h"
 #include <iostream>
 #include <limits>
+#include <zconf.h>
 
 int UserInterface::askUserLogOrSign() {
     cout << "\033[2J\033[1;1H";
@@ -22,8 +23,6 @@ int UserInterface::askUserLogOrSign() {
 }
 
 int UserInterface::askUserAccountAction() {
-    cout << "\033[2J\033[1;1H";
-    cout << "" << endl;
     cout << "What do you want to do?" << endl;
     cout << "1) Make transfer" << endl;
     cout << "2) Deposit money" << endl;
@@ -39,6 +38,7 @@ int UserInterface::askUserAccountAction() {
 shared_ptr<Account> UserInterface::askUserForLoginAccountInfo() {
     string login, password, type;
 
+    cout << "\033[2J\033[1;1H";
     cout << "LOG IN:" << endl;
     cout << "" << endl;
     cout << "Login: ";
@@ -52,6 +52,7 @@ shared_ptr<Account> UserInterface::askUserForLoginAccountInfo() {
 
 shared_ptr<Transfer> UserInterface::askUserForTransferInfo() {
     string recipientNumber, amount, title;
+    cout << "\033[2J\033[1;1H";
     cout << "TRANSFER DETAILS:" << endl;
     cout << "" << endl;
     cout << "Recipient Number: ";
@@ -69,17 +70,17 @@ shared_ptr<Transfer> UserInterface::askUserForTransferInfo() {
 
 shared_ptr<Account> UserInterface::askUserForNewAccountInfo() {
     string login, password, type;
-
+    cout << "\033[2J\033[1;1H";
     cout << "Create new account:" << endl;
     cout << "" << endl;
     do {
         cout << "Login: ";
         cin >> login;
-    } while (bank->checkIfLoginAvailable(login));
+    } while (!bank->checkIfLoginAvailable(login));
     cout << "Password: ";
     cin >> password;
     while (type != "s" && type != "j" && type != "p") {
-        cout << "Account type (junior, student or personal): [j, s or p]";
+        cout << "Account type (junior, student or personal): [j, s or p] ";
         cin >> type;
     }
     cin.ignore (std::numeric_limits<std::streamsize>::max(), '\n');
@@ -94,7 +95,8 @@ shared_ptr<Account> UserInterface::askUserForNewAccountInfo() {
 }
 
 double UserInterface::askUserForDepositInfo() {
-    string amount = "";
+    string amount;
+    cout << "\033[2J\033[1;1H";
     while (atof(amount.c_str()) == 0) {
         cout << "" << endl;
         cout << "How much money would you like to deposit? " << endl;
@@ -106,6 +108,7 @@ double UserInterface::askUserForDepositInfo() {
 
 double UserInterface::askUserForWithdrawInfo() {
     string amount;
+    cout << "\033[2J\033[1;1H";
     while (atof(amount.c_str()) == 0) {
         cout << "" << endl;
         cout << "How much money would you like to withdraw? " << endl;
@@ -138,18 +141,20 @@ void UserInterface::displaySuccess() {
     cout << "" << endl;
     cout << "SUCCESS!" << endl;
     cout << "" << endl;
+    sleep(1);
 }
 
 void UserInterface::displayFailed() {
     cout << "" << endl;
     cout << "FAILED!" << endl;
     cout << "" << endl;
+    sleep(1);
 }
 
 void UserInterface::displayAccountDetails(shared_ptr<Account> account) {
+    cout << "\033[2J\033[1;1H";
     cout << "LOGGED AS: " << account->getLogin() << " (" << account->getAccountType() << ")" << endl;
     cout << "Your number: " << account->getNumber() << endl;
-    cout << "" << endl;
     cout << "Balance: " << account->getBalance() << " (" << account->getBlockedBalance() << " blocked)" << endl;
     cout << "" << endl;
 }
@@ -157,6 +162,7 @@ void UserInterface::displayAccountDetails(shared_ptr<Account> account) {
 bool UserInterface::askUserForPasswordConfirmation(shared_ptr<Account> account) {
     string pass;
 
+    cout << "\033[2J\033[1;1H";
     cout << "Confirm your current password: ";
     cin >> pass;
     cin.ignore (std::numeric_limits<std::streamsize>::max(), '\n');

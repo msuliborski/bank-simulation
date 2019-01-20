@@ -12,7 +12,6 @@ set(SOURCES
         src/main.cpp
 
         src/system/SimulationLogic.cpp
-        src/bank/User.cpp
         src/system/UserInterface.cpp
 
         src/bank/Account.cpp
