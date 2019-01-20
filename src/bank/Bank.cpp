@@ -94,7 +94,7 @@ void Bank::restoreAccountState() {
 
 int Bank::getNewAccountNumber() {
     srand(time(NULL));
-    int newNumber = rand() % 9999 + 1000;
+    int newNumber = rand() % 9000 + 1000;
 
     for(int i = 0; i < accounts.size(); i++){
         if(accounts[i]->getNumber() == newNumber) return getNewAccountNumber();
