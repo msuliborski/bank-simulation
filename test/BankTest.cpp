@@ -64,33 +64,32 @@ BOOST_AUTO_TEST_CASE(test1Test){
 	//BOOST_CHECK_EQUAL(personalAccount->getBalance(), 390);
 //getBlockedBalance
 
-	BOOST_CHECK_LE(bank->getNewAccountNumber(), 9999);
-	BOOST_CHECK_GE(bank->getNewAccountNumber(), 1000);
+//	BOOST_CHECK_LE(bank->getNewAccountNumber(), 9999);
+//	BOOST_CHECK_GE(bank->getNewAccountNumber(), 1000);
 
-	bank->addAccount(personalAccount);
-	//bank->addAccount(juniorAccount);
-
-	BOOST_CHECK_EQUAL(bank->checkIfLoginAvailable("login"), true);
-	BOOST_CHECK_EQUAL(bank->checkIfLoginAvailable("newLogin"), false);
-
-	bank->deleteAccount(personalAccount->getNumber());
-	BOOST_CHECK_EQUAL(bank->checkIfLoginAvailable("newLogin"), true);
-
-
+//	bank->addAccount(personalAccount);
+//	//bank->addAccount(juniorAccount);
+//
+//	BOOST_CHECK_EQUAL(bank->checkIfLoginAvailable("login"), true);
+//	BOOST_CHECK_EQUAL(bank->checkIfLoginAvailable("newLogin"), false);
+//
+//	bank->deleteAccount(personalAccount->getNumber());
+//	BOOST_CHECK_EQUAL(bank->checkIfLoginAvailable("newLogin"), true);
 
 
-
-	BOOST_CHECK_GE(1, 1);
-	BOOST_CHECK_LT(1, 2);
-	BOOST_CHECK_GT(2, 1);
-	BOOST_CHECK(true);
-
-
-	BOOST_REQUIRE_EQUAL(1, 1);
-	BOOST_REQUIRE_CLOSE_FRACTION(1.0001, 1, 1.0002);
 }
 
 BOOST_AUTO_TEST_CASE(test2Test){
 
-	BOOST_CHECK_THROW(throw "error", const char *);
+//    shared_ptr<Bank> bank(Bank::GetInstance(1000000));
+//    bank->addAccount(shared_ptr<Account>(new PersonalAccount(9999, "a", "a", 500)));
+//    bank->addAccount(shared_ptr<Account>(new PersonalAccount(9999, "b", "b", 5200)));
+
+
+    //personalAccount->makeTransfer(8888, "title", 15);
+    //bank->handleTransfers();
+    //BOOST_CHECK_EQUAL(personalAccount->getBalance(), 390);
+//getBlockedBalance
+
+
 }
