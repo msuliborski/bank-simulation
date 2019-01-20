@@ -12,11 +12,13 @@ class UserInterface{
 
 private:
     shared_ptr<Bank> bank;
+public:
+    void setBank(shared_ptr<Bank> bank);
 
 public:
     void displaySuccess();
     void displayFailed();
-    void displayAccountDeails(shared_ptr<Account> account);
+    void displayAccountDetails(shared_ptr<Account> account);
 
     int askUserLogOrSign();
     int askUserAccountAction();

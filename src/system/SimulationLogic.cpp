@@ -10,9 +10,9 @@ void SimulationLogic::simulate() {
 
     shared_ptr<UserInterface> ui(new UserInterface());
     this->ui = ui;
+    ui->setBank(bank);
 
     shared_ptr<Account> currentAccount = nullptr;
-
     int logOrSign = -1;
     while (true) {
         if (logOrSign == -1) logOrSign = ui->askUserLogOrSign();
@@ -22,7 +22,7 @@ void SimulationLogic::simulate() {
             int accountAction = -1;
             while (true) {
                 bank->displayAccounts();
-                ui->displayAccountDeails(currentAccount);
+                ui->displayAccountDetails(currentAccount);
                 accountAction = ui->askUserAccountAction();
                 if (accountAction == 1) {//transfer
                     makeTransfer(currentAccount);
@@ -61,12 +61,8 @@ shared_ptr<Account> SimulationLogic::logIn() {
 
     shared_ptr<Account> account = ui->askUserForLoginAccountInfo();
 
-    cout << account->getLogin() << endl;
-    cout << account->getPassword() << endl;
+    account = bank->getAccountIfCredentialsMatch(account);
 
-    account = bank->checkIfAccountExists(account);
-
-    cout << "dupa" << endl;
     if(account != nullptr)
         ui->displaySuccess();
     else
@@ -133,4 +129,8 @@ shared_ptr<Account> SimulationLogic::createAccount() {
     ui->displaySuccess();
 
     return account;
+}
+
+void SimulationLogic::setBank(shared_ptr<Bank> bank) {
+    this->bank = bank;
 }

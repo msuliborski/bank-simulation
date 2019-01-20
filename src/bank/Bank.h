@@ -13,7 +13,6 @@ class Bank {
 
 private:
     vector<shared_ptr<Transfer>> pendingTransfers;
-    vector<shared_ptr<Transfer>> transferHistory;
     Bank(double money);
     static shared_ptr<Bank> instance;
     double money;
@@ -27,11 +26,11 @@ public:
     void restoreAccountState();
     int getNewAccountNumber();
     shared_ptr<Account> getAccountByNumber(int number);
-
     void addAccount(shared_ptr<Account> account);
     void addTransfer(shared_ptr<Transfer> transfer);
     bool deleteAccount(int);
-    shared_ptr<Account> checkIfAccountExists(shared_ptr<Account>);
+    shared_ptr<Account> getAccountIfCredentialsMatch(shared_ptr<Account> account);
+    bool checkIfLoginAvailable(string login);
     void handleTransfers();
     void displayAccounts();
 

@@ -56,7 +56,7 @@ shared_ptr<Transfer> UserInterface::askUserForTransferInfo() {
     cout << "" << endl;
     cout << "Recipient Number: ";
     cin >> recipientNumber;
-    while (atof(amount.c_str()) != 0) {
+    while (atof(amount.c_str()) == 0) {
         cout << "Transfer amount: ";
         cin >> amount;
     }
@@ -64,7 +64,7 @@ shared_ptr<Transfer> UserInterface::askUserForTransferInfo() {
     cin >> title;
     cin.ignore (std::numeric_limits<std::streamsize>::max(), '\n');
 
-    return shared_ptr<Transfer>(new Transfer(title, stoi(recipientNumber), 999999, atof(amount.c_str())));
+    return shared_ptr<Transfer>(new Transfer(title, atoi(recipientNumber.c_str()), 999999, atof(amount.c_str())));
 }
 
 shared_ptr<Account> UserInterface::askUserForNewAccountInfo() {
@@ -72,8 +72,10 @@ shared_ptr<Account> UserInterface::askUserForNewAccountInfo() {
 
     cout << "Create new account:" << endl;
     cout << "" << endl;
-    cout << "Login: ";
-    cin >> login;
+    do {
+        cout << "Login: ";
+        cin >> login;
+    } while (bank->checkIfLoginAvailable(login));
     cout << "Password: ";
     cin >> password;
     while (type != "s" && type != "j" && type != "p") {
@@ -92,8 +94,8 @@ shared_ptr<Account> UserInterface::askUserForNewAccountInfo() {
 }
 
 double UserInterface::askUserForDepositInfo() {
-    string amount;
-    while (atof(amount.c_str()) != 0) {
+    string amount = "";
+    while (atof(amount.c_str()) == 0) {
         cout << "" << endl;
         cout << "How much money would you like to deposit? " << endl;
         cin >> amount;
@@ -104,7 +106,7 @@ double UserInterface::askUserForDepositInfo() {
 
 double UserInterface::askUserForWithdrawInfo() {
     string amount;
-    while (atof(amount.c_str()) != 0) {
+    while (atof(amount.c_str()) == 0) {
         cout << "" << endl;
         cout << "How much money would you like to withdraw? " << endl;
         cin >> amount;
@@ -121,7 +123,7 @@ int UserInterface::getNumberFromUser(int from, int to) {
 
     while (true){
         try {
-            getline(cin, input); inputInt = stoi(input);
+            getline(cin, input); inputInt = atoi(input.c_str());
             if (inputInt < from || inputInt > to) { throw 1; }
             break;
         }
@@ -144,7 +146,7 @@ void UserInterface::displayFailed() {
     cout << "" << endl;
 }
 
-void UserInterface::displayAccountDeails(shared_ptr<Account> account) {
+void UserInterface::displayAccountDetails(shared_ptr<Account> account) {
     cout << "LOGGED AS: " << account->getLogin() << " (" << account->getAccountType() << ")" << endl;
     cout << "Your number: " << account->getNumber() << endl;
     cout << "" << endl;
@@ -187,4 +189,8 @@ string UserInterface::askUserForNewLogin() {
     cin.ignore (std::numeric_limits<std::streamsize>::max(), '\n');
 
     return login;
+}
+
+void UserInterface::setBank(shared_ptr<Bank> bank) {
+    this->bank = bank;
 }

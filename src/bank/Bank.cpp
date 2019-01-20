@@ -82,10 +82,11 @@ void Bank::restoreAccountState() {
         }
 
         shared_ptr<Account> account;
-        if (type == "student") account = shared_ptr<Account>(new StudentsAccount(stoi(number), login, password, atof(balance.c_str())));
-        else if (type == "junior") account = shared_ptr<Account>(new JuniorAccount(stoi(number), login, password, atof(balance.c_str())));
-        else if (type == "personal") account = shared_ptr<Account>(new PersonalAccount(stoi(number), login, password, atof(balance.c_str())));
+        if (type == "student") account = shared_ptr<Account>(new StudentsAccount(atoi(number.c_str()), login, password, atof(balance.c_str())));
+        else if (type == "junior") account = shared_ptr<Account>(new JuniorAccount(atoi(number.c_str()), login, password, atof(balance.c_str())));
+        else if (type == "personal") account = shared_ptr<Account>(new PersonalAccount(atoi(number.c_str()), login, password, atof(balance.c_str())));
 
+        account->setBank(shared_ptr<Bank>(this));
         this->accounts.push_back(account);
 
     }
@@ -105,11 +106,12 @@ int Bank::getNewAccountNumber() {
 
 void Bank::addAccount(shared_ptr<Account> account){
     account->setNumber(getNewAccountNumber());
+    account->setBank(shared_ptr<Bank>(this));
     accounts.push_back(account);
 }
 
 void Bank::addTransfer(shared_ptr<Transfer> transfer) {
-    pendingTransfers.push_back(transfer);
+    this->pendingTransfers.push_back(transfer);
 }
 
 bool Bank::deleteAccount(int accountNumber) {
@@ -118,12 +120,18 @@ bool Bank::deleteAccount(int accountNumber) {
     }
     return false;
 }
-shared_ptr<Account> Bank::checkIfAccountExists(shared_ptr<Account> account) {
+shared_ptr<Account> Bank::getAccountIfCredentialsMatch(shared_ptr<Account> account) {
     for(int i = 0; i < accounts.size(); i++){
         if(accounts[i]->getLogin() == account->getLogin() && accounts[i]->getPassword() == account->getPassword()) {
             return accounts[i]; }
         }
     return nullptr;
+}
+
+bool Bank::checkIfLoginAvailable(string login) {
+    for(int i = 0; i < accounts.size(); i++)
+        if(accounts[i]->getLogin() == login) return false;
+    return true;
 }
 
 void Bank::handleTransfers() {
@@ -133,8 +141,6 @@ void Bank::handleTransfers() {
 
         recipient->deposit(pendingTransfers[i]->getAmount()); //get money to recipient
         sender->setBlockedBalance(sender->getBlockedBalance() - pendingTransfers[i]->getAmount() - sender->getTransferFee()); // remove cost form blocked balance
-
-        transferHistory.push_back(pendingTransfers[i]); //add transfer to transfer history
     }
     pendingTransfers.clear();
 }

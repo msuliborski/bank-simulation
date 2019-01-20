@@ -1,7 +1,7 @@
 #include <string>
 #include <iostream>
 #include "Account.h"
-#include "Transfer.h"
+//#include "Transfer.h"
 
 using namespace std;
 
@@ -17,13 +17,13 @@ Account::Account(int number, string login, string password, double balance) {
 Account::~Account() = default;
 
 bool Account::makeTransfer(int recipient, string title, double amount) {
+
     if (amount + this->getTransferFee() > this->getBalance() || amount > this->getTransferLimit()){
         return false;
     } else {
         shared_ptr<Transfer> transfer(new Transfer(title, recipient, this->getNumber(), amount));
 
         bank->addTransfer(transfer);
-
         this->balance -= amount + this->getTransferFee();
         this->blockedBalance += amount + this->getTransferFee();
     }
@@ -97,4 +97,8 @@ void Account::setBlockedBalance(double blockedBalance) {
 
 void Account::setNumber(int number) {
     this->number = number;
+}
+
+void Account::setBank(shared_ptr<Bank> bank) {
+    this->bank = bank;
 }

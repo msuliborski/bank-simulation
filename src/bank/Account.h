@@ -26,6 +26,8 @@ public:
 private:
 
     shared_ptr<Bank> bank;
+public:
+    void setBank(shared_ptr<Bank> bank);
 
 public:
     Account(int number, string login, string password, double balance);

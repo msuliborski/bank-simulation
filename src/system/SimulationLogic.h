@@ -13,6 +13,8 @@ class SimulationLogic {
 private:
     shared_ptr<Bank> bank;
     shared_ptr<UserInterface> ui;
+public:
+    void setBank(shared_ptr<Bank> bank);
 
 public:
     void simulate();
