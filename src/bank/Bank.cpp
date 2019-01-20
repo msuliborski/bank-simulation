@@ -82,9 +82,9 @@ void Bank::restoreAccountState() {
         }
 
         shared_ptr<Account> account;
-        if (type == "student") account = shared_ptr<Account>(new StudentsAccount(number, login, password, atof(balance.c_str())));
-        else if (type == "junior") account = shared_ptr<Account>(new JuniorAccount(number, login, password, atof(balance.c_str())));
-        else if (type == "personal") account = shared_ptr<Account>(new PersonalAccount(number, login, password, atof(balance.c_str())));
+        if (type == "student") account = shared_ptr<Account>(new StudentsAccount(stoi(number), login, password, atof(balance.c_str())));
+        else if (type == "junior") account = shared_ptr<Account>(new JuniorAccount(stoi(number), login, password, atof(balance.c_str())));
+        else if (type == "personal") account = shared_ptr<Account>(new PersonalAccount(stoi(number), login, password, atof(balance.c_str())));
 
         this->accounts.push_back(account);
 
@@ -93,11 +93,18 @@ void Bank::restoreAccountState() {
 
 }
 
-string Bank::getNewAccountNumber() {
-    return "123456";
+int Bank::getNewAccountNumber() {
+    srand(time(NULL));
+    int newNumber = rand() % 9999 + 1000;
+
+    for(int i = 0; i < accounts.size(); i++){
+        if(accounts[i]->getNumber() == newNumber) return getNewAccountNumber();
+    }
+    return newNumber;
 }
 
 void Bank::addAccount(shared_ptr<Account> account){
+    account->setNumber(getNewAccountNumber());
     accounts.push_back(account);
 }
 
@@ -105,7 +112,7 @@ void Bank::addTransfer(shared_ptr<Transfer> transfer) {
     pendingTransfers.push_back(transfer);
 }
 
-bool Bank::deleteAccount(string accountNumber) {
+bool Bank::deleteAccount(int accountNumber) {
     for(int i = 0; i < accounts.size(); i++){
         if(accounts[i]->getNumber() == accountNumber) {accounts.erase(accounts.begin() + i); return true;}
     }
@@ -132,19 +139,21 @@ void Bank::handleTransfers() {
     pendingTransfers.clear();
 }
 
-shared_ptr<Account> Bank::getAccountByNumber(string accountNumber) {
+shared_ptr<Account> Bank::getAccountByNumber(int accountNumber) {
     for(int i = 0; i < accounts.size(); i++){
         if(accounts[i]->getNumber() == accountNumber) {
             return accounts[i];}
     }
     return nullptr;
 }
-//
-//void Bank::displayAccounts() {
-//
-//    if (accounts[0] == nullptr) cout << "yea" << endl;
-//    cout << accounts[0]->getNumber() << endl;
-//    for(int i = 0; i < accounts.size(); i++) {
-//        cout << accounts[i]->getNumber() << endl;
-//    }
-//}
+
+void Bank::displayAccounts() {
+
+    for(int i = 0; i < accounts.size(); i++) {
+        cout  << this->accounts[i]->getAccountType() << ":"
+                    << this->accounts[i]->getNumber() << ":"
+                    << this->accounts[i]->getLogin() << ":"
+                    << this->accounts[i]->getPassword() << ":"
+                    << this->accounts[i]->getBalance() << endl;
+    }
+}

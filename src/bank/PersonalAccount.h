@@ -9,7 +9,7 @@ private:
     double transferFee = 5;
 
 public:
-    PersonalAccount(string number, string login, string password, double balance);
+    PersonalAccount(int number, string login, string password, double balance);
     ~PersonalAccount();
 
     double getTransferLimit() override;

@@ -2,7 +2,7 @@
 #include <iostream>
 
 
-StudentsAccount::StudentsAccount(string number, string login, string password, double balance) : Account(login, password, balance) {
+StudentsAccount::StudentsAccount(int number, string login, string password, double balance) : Account(number, login, password, balance) {
 
 }
 

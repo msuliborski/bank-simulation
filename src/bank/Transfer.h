@@ -9,18 +9,18 @@ class Transfer {
 
 private:
     string title;
-    string recipientNumber;
-    string senderNumber;
+    int recipientNumber;
+    int senderNumber;
     double amount;
 
 public:
-    Transfer(string title, string recipientNumber, string senderNumber, double amount);
+    Transfer(string title, int recipientNumber, int senderNumber, double amount);
     ~Transfer();
 
     string getTitle();
-    string getRecipientNumber();
-    string getSenderNumber();
-    void setSenderNumber(string senderNumber);
+    int getRecipientNumber();
+    int getSenderNumber();
+    void setSenderNumber(int senderNumber);
     double getAmount();
 
 };

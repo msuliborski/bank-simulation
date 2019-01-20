@@ -3,7 +3,7 @@
 
 using namespace std;
 
-PersonalAccount::PersonalAccount(string number, string login, string password, double balance) : Account(login, password, balance) {
+PersonalAccount::PersonalAccount(int number, string login, string password, double balance) : Account(number, login, password, balance) {
 
 }
 

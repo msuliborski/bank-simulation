@@ -46,7 +46,7 @@ shared_ptr<Account> UserInterface::askUserForLoginAccountInfo() {
     cout << "Password: ";
     cin >> password;
     cin.ignore (std::numeric_limits<std::streamsize>::max(), '\n');
-    return shared_ptr<Account>(new StudentsAccount("number", login, password, 0));
+    return shared_ptr<Account>(new StudentsAccount(999999, login, password, 0));
 
 }
 
@@ -64,7 +64,7 @@ shared_ptr<Transfer> UserInterface::askUserForTransferInfo() {
     cin >> title;
     cin.ignore (std::numeric_limits<std::streamsize>::max(), '\n');
 
-    return shared_ptr<Transfer>(new Transfer(title, recipientNumber, "000", atof(amount.c_str())));
+    return shared_ptr<Transfer>(new Transfer(title, stoi(recipientNumber), 999999, atof(amount.c_str())));
 }
 
 shared_ptr<Account> UserInterface::askUserForNewAccountInfo() {
@@ -84,15 +84,12 @@ shared_ptr<Account> UserInterface::askUserForNewAccountInfo() {
 
     shared_ptr<Account> account = nullptr;
 
-    if (type == "p") account = shared_ptr<Account>(new PersonalAccount("number", login, password, 0));
-    else if (type == "s") account = shared_ptr<Account>(new StudentsAccount("number", login, password, 0));
-    else if (type == "j") account = shared_ptr<Account>(new JuniorAccount("number", login, password, 0));
+    if (type == "p") account = shared_ptr<Account>(new PersonalAccount(999999, login, password, 0));
+    else if (type == "s") account = shared_ptr<Account>(new StudentsAccount(999999, login, password, 0));
+    else if (type == "j") account = shared_ptr<Account>(new JuniorAccount(999999, login, password, 0));
 
     return account;
 }
-
-
-
 
 double UserInterface::askUserForDepositInfo() {
     string amount;
@@ -102,7 +99,6 @@ double UserInterface::askUserForDepositInfo() {
         cin >> amount;
     }
     cin.ignore (std::numeric_limits<std::streamsize>::max(), '\n');
-
     return atof(amount.c_str());
 }
 
@@ -125,7 +121,7 @@ int UserInterface::getNumberFromUser(int from, int to) {
 
     while (true){
         try {
-            getline(cin, input); inputInt = atoi(input.c_str());
+            getline(cin, input); inputInt = stoi(input);
             if (inputInt < from || inputInt > to) { throw 1; }
             break;
         }

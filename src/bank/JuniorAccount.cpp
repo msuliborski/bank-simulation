@@ -3,7 +3,7 @@
 
 using namespace std;
 
-JuniorAccount::JuniorAccount(string number, string login, string password, double balance) : Account(login, password, balance) {
+JuniorAccount::JuniorAccount(int number, string login, string password, double balance) : Account(number, login, password, balance) {
 
 }
 

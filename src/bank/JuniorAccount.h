@@ -9,7 +9,7 @@ private:
     double transferLimit = 500;
 
 public:
-    JuniorAccount(string number, string login, string password, double balance);
+    JuniorAccount(int number, string login, string password, double balance);
     ~JuniorAccount();
 
     double getTransferLimit() override;

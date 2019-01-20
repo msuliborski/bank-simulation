@@ -21,6 +21,7 @@ void SimulationLogic::simulate() {
             if (currentAccount == nullptr) continue;
             int accountAction = -1;
             while (true) {
+                bank->displayAccounts();
                 ui->displayAccountDeails(currentAccount);
                 accountAction = ui->askUserAccountAction();
                 if (accountAction == 1) {//transfer

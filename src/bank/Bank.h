@@ -25,12 +25,12 @@ public:
     static shared_ptr<Bank> GetInstance(double money);
     void saveAccountState();
     void restoreAccountState();
-    string getNewAccountNumber();
-    shared_ptr<Account> getAccountByNumber(string number);
+    int getNewAccountNumber();
+    shared_ptr<Account> getAccountByNumber(int number);
 
     void addAccount(shared_ptr<Account> account);
     void addTransfer(shared_ptr<Transfer> transfer);
-    bool deleteAccount(string);
+    bool deleteAccount(int);
     shared_ptr<Account> checkIfAccountExists(shared_ptr<Account>);
     void handleTransfers();
     void displayAccounts();

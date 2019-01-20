@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Transfer::Transfer(string title, string recipientNumber, string senderNumber, double amount) {
+Transfer::Transfer(string title, int recipientNumber, int senderNumber, double amount) {
     this->title = title;
     this->recipientNumber = recipientNumber;
     this->senderNumber = senderNumber;
@@ -17,14 +17,14 @@ string Transfer::getTitle() {
     return this->title;
 }
 
-string Transfer::getRecipientNumber() {
+int Transfer::getRecipientNumber() {
     return this->recipientNumber;
 }
 
-string Transfer::getSenderNumber() {
+int Transfer::getSenderNumber() {
     return this->senderNumber;
 }
-void Transfer::setSenderNumber(string senderNumber) {
+void Transfer::setSenderNumber(int senderNumber) {
     this->senderNumber = senderNumber;
 }
 

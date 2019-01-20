@@ -7,7 +7,7 @@
 class StudentsAccount: public Account {
 private:
 public:
-    StudentsAccount(string number, string login, string password, double balance);
+    StudentsAccount(int number, string login, string password, double balance);
     ~StudentsAccount();
 
     double getTransferFee() override;

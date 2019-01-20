@@ -13,7 +13,7 @@ using namespace std;
 class Account {
 
 private:
-    string number;
+    int number;
 
     string login;
     string password;
@@ -28,19 +28,21 @@ private:
     shared_ptr<Bank> bank;
 
 public:
-    Account(string login, string password, double balance);
+    Account(int number, string login, string password, double balance);
     ~Account();
 
-    bool makeTransfer(string recipient, string title, double amount);
+    bool makeTransfer(int recipient, string title, double amount);
 
     virtual double getTransferFee() = 0;
     virtual double getTransferLimit() = 0;
     virtual string getAccountType() = 0;
 
+    void setNumber(int number);
+
     double getBalance();
     double getBlockedBalance();
 
-    string getNumber();
+    int getNumber();
     string getLogin();
     string getPassword();
 

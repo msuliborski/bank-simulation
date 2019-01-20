@@ -5,8 +5,8 @@
 
 using namespace std;
 
-Account::Account(string login, string password, double balance) {
-    this->number = this->bank->getNewAccountNumber();
+Account::Account(int number, string login, string password, double balance) {
+    this->number = number;
     this->login = login;
     this->password = password;
     this->balance = balance;
@@ -16,7 +16,7 @@ Account::Account(string login, string password, double balance) {
 
 Account::~Account() = default;
 
-bool Account::makeTransfer(string recipient, string title, double amount) {
+bool Account::makeTransfer(int recipient, string title, double amount) {
     if (amount + this->getTransferFee() > this->getBalance() || amount > this->getTransferLimit()){
         return false;
     } else {
@@ -39,7 +39,7 @@ double Account::getBlockedBalance() {
 }
 
 
-string Account::getNumber() {
+int Account::getNumber() {
     return this->number;
 }
 
@@ -93,4 +93,8 @@ bool Account::closeAccount() {
 
 void Account::setBlockedBalance(double blockedBalance) {
     this->blockedBalance = blockedBalance;
+}
+
+void Account::setNumber(int number) {
+    this->number = number;
 }
