@@ -26,7 +26,6 @@ shared_ptr<Bank> Bank::GetInstance(double money) {
 }
 
 void Bank::saveAccountState() {
-
     ofstream outputFile("account-data.txt", ios::trunc);
 
     for (int i = 0; i < this->accounts.size(); i++){
@@ -36,7 +35,6 @@ void Bank::saveAccountState() {
                     << this->accounts[i]->getPassword() << ":"
                     << this->accounts[i]->getBalance() << endl;
     }
-
     outputFile.close();
 }
 

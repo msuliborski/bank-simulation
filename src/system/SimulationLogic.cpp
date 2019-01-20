@@ -56,7 +56,7 @@ void SimulationLogic::simulate() {
         }
         else if (logOrSign == 0) {//exit
             bank->saveAccountState();
-            break;
+            exit(0);
         }
         bank->handleTransfers();
     }
