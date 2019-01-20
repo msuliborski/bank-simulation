@@ -9,7 +9,6 @@ SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/out)
 include_directories(include)
 #file(GLOB SOURCES "src/*.cpp")
 set(SOURCES
-        src/main.cpp
 
         src/system/SimulationLogic.cpp
         src/system/UserInterface.cpp
@@ -23,7 +22,7 @@ set(SOURCES
 
         src/bank/Transfer.cpp
         )
-add_executable(bank-simulation ${SOURCES})
+add_executable(bank-simulation src/main.cpp ${SOURCES})
 
 enable_testing()
 set(Boost_USE_MULTITHREADED ON)
@@ -41,6 +40,7 @@ add_custom_target(check ${CMAKE_COMMAND} -E env CTEST_OUTPUT_ON_FAILURE=1 BOOST_
 set(TEST_SOURCES
         test/config.cpp
         test/BankTest.cpp
+        ${SOURCES}
         )
 add_executable(tester ${TEST_SOURCES})
 target_link_libraries(tester ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})

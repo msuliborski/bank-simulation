@@ -4,6 +4,8 @@
 #include <cstddef>
 #include <cstddef>
 #include "../src/bank/Bank.h"
+#include "../src/system/SimulationLogic.h"
+#include "../src/system/UserInterface.h"
 #include "../src/bank/PersonalAccount.h"
 
 using namespace std;
@@ -12,9 +14,10 @@ using namespace std;
 BOOST_AUTO_TEST_CASE(test1Test){
 	shared_ptr<Bank> bank(Bank::GetInstance(1000000));
 
-	shared_ptr<Account> account(new PersonalAccount(9999, "test", "test", 500)));
+	shared_ptr<Account> account(new PersonalAccount(9999, "test", "test", 500));
 
 	BOOST_CHECK_EQUAL(account->getPassword(), "test");
+	BOOST_CHECK_EQUAL(account->getAccountType(), "personal");
 	//login
 	//kase
 	BOOST_CHECK_LE(bank->getNewAccountNumber(), 9999);
