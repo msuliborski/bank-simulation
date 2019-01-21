@@ -14,7 +14,7 @@
 
 using namespace std;
 
-BOOST_AUTO_TEST_CASE(test1Test){
+BOOST_AUTO_TEST_CASE(checkAccounts){
 
 	shared_ptr<Bank> bank(Bank::GetInstance(1000000));
 
@@ -89,39 +89,14 @@ BOOST_AUTO_TEST_CASE(test1Test){
 		BOOST_CHECK_GE(bank->getNewAccountNumber(), 1000);
 	}
 
-	bank->addAccount(personalAccount);
-
-	BOOST_CHECK_EQUAL(bank->checkIfLoginAvailable("login"), true);
-	BOOST_CHECK_EQUAL(bank->checkIfLoginAvailable("newLogin"), false);
-
-	bank->deleteAccount(personalAccount->getNumber());
-	BOOST_CHECK_EQUAL(bank->checkIfLoginAvailable("login"), true);
-	BOOST_CHECK_EQUAL(bank->checkIfLoginAvailable("newLogin"), true);
-
-	Transfer transfer("title", 9999, 8888, 20);
-
-	BOOST_CHECK_EQUAL(transfer.getTitle(), "title");
-	BOOST_CHECK_EQUAL(transfer.getRecipientNumber(), 9999);
-	BOOST_CHECK_EQUAL(transfer.getSenderNumber(), 8888);
-	BOOST_CHECK_EQUAL(transfer.getAmount(), 20);
-
-	//bank->addTransfer(transfer);
-
 }
 
-BOOST_AUTO_TEST_CASE(test2Test){
+BOOST_AUTO_TEST_CASE(checkTransfers){
 
-	//shared_ptr<Bank> bank(Bank::GetInstance(1000000));
+    Transfer transfer("title", 9999, 8888, 20);
 
-    //bank->addAccount(shared_ptr<Account>(new PersonalAccount(9999, "a", "a", 500)));
-    //bank->addAccount(shared_ptr<Account>(new PersonalAccount(9999, "b", "b", 5200)));
-
-    //int aNum = bank->getAccountByLogin("a")->getNumber();
-    //int bNum = bank->getAccountByLogin("b")->getNumber();
-
-    //personalAccount->makeTransfer(8888, "title", 15);
-    //bank->handleTransfers();
-    //BOOST_CHECK_EQUAL(personalAccount->getBalance(), 390);
-//getBlockedBalance
-
+    BOOST_CHECK_EQUAL(transfer.getTitle(), "title");
+    BOOST_CHECK_EQUAL(transfer.getRecipientNumber(), 9999);
+    BOOST_CHECK_EQUAL(transfer.getSenderNumber(), 8888);
+    BOOST_CHECK_EQUAL(transfer.getAmount(), 20);
 }
