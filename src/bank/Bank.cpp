@@ -8,8 +8,7 @@
 
 using namespace std;
 
-Bank::Bank(double money) {
-    this->money = money;
+Bank::Bank(double money) : money(money){
     restoreAccountState();
 }
 

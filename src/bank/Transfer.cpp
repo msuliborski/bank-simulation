@@ -2,11 +2,8 @@
 
 using namespace std;
 
-Transfer::Transfer(string title, int recipientNumber, int senderNumber, double amount) {
-    this->title = title;
-    this->recipientNumber = recipientNumber;
-    this->senderNumber = senderNumber;
-    this->amount = amount;
+Transfer::Transfer(string title, int recipientNumber, int senderNumber, double amount) : title(title), recipientNumber(recipientNumber), senderNumber(senderNumber), amount(amount) {
+
 }
 
 Transfer::~Transfer() {

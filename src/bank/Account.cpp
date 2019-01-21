@@ -5,12 +5,8 @@
 
 using namespace std;
 
-Account::Account(int number, string login, string password, double balance) {
-    this->number = number;
-    this->login = login;
-    this->password = password;
-    this->balance = balance;
-    this->blockedBalance = 0;
+Account::Account(int number, string login, string password, double balance) : number(number),login(login), password(password), balance(balance), blockedBalance(0) {
+
 }
 
 
