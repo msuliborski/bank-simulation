@@ -28,5 +28,5 @@ pipeline  {
                 sh 'out/./bank-simulation'
             }
         }
-    }
+    } 
 }
