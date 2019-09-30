@@ -21,6 +21,7 @@ pipeline  {
         }
         stage('Build & Test') {
             steps{
+                sh 'echo sript change'
                 sh 'cd bank-simulation'
                 sh 'cmake CMakeLists.txt'
                 sh 'make'
@@ -28,4 +29,4 @@ pipeline  {
             }
         }
     }
-} 
+}
