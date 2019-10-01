@@ -26,7 +26,7 @@ pipeline  {
                 sh 'cmake CMakeLists.txt'
                 sh 'make'
                 sh 'out/./bank-simulation'
-            } 
+            }
         }
-    }  
+    }
 }
